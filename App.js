@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Asset } from 'expo-asset'
-import { AppLoading } from 'expo'
-import MusicApp from './app/index'
 
-
+import { Asset } from 'expo-asset';
+import { AppLoading } from 'expo';
+import MusicApp from './app/index';
 function cacheImages(images) {
   return images.map(image => {
     if (typeof image === 'string') {
@@ -14,21 +13,16 @@ function cacheImages(images) {
     }
   });
 }
-
 export default class App extends React.Component {
-
   constructor() {
-    super()
-    this.state={
+    super();
+    this.state = {
       isReady: false
-    }
+    };
   }
 
   async _loadAssetsAsync() {
-    const imageAssets = cacheImages([
-      require('./assets/bg.jpg'),
-    ]);
-
+    const imageAssets = cacheImages([require('./assets/bg.jpg')]);
 
     await Promise.all([...imageAssets]);
   }
@@ -42,16 +36,15 @@ export default class App extends React.Component {
           onError={console.warn}
         />
       );
-    }    
-    return <MusicApp />
+    }
+    return <MusicApp />;
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 });
